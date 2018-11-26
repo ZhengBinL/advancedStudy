@@ -71,3 +71,4 @@ export default {
   npm run rollup
 
 + rollup.config.js配置文件详情观看rollup.config.js 文件
+https://www.rollupjs.com/guide/zh#big-list-of-options
