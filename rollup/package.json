@@ -1,0 +1,16 @@
+{
+  "name": "rollup",
+  "version": "1.0.0",
+  "description": "创建第一个bundle\r + npm install rollup --global #or `npm i rollup -g`\r + rollup  //运行rollup命令\r + mkdir -p my-rollup-project/src //创建一个简单的项目\r + cd my-rollup-project\r //创建入口，将以下代码粘贴到新建的文件src/main.js中:\r + import foo from './foo.js';\r + export default function(){\r     coonsole.log(foo);\r }\r + 之后创建入口文件引用的foo.js模块：\r export default 'hello world!';\r + 创建bundle\r + rollup src/main.js -f cjs //-f选项（--output.format的缩写）指定所创建bundle的类型\r `js`\r 'use strict';\r var foo = 'hello world!';\r function main (){\r     console.log(foo);\r }\r module.exports = main\r + 将bundle保存为文件\r `js`\r rollup src/main.js -o bundle.js -f cjs",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rollup":"rollup -c rollup.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup-plugin-json": "^3.1.0"
+  }
+}
