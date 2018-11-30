@@ -54,3 +54,37 @@ Static Type Checker For JavaScript
 ## Flow能做什么？
 Flow能够给JavaScript提供静态类型检查的能力，其实就是为JavaScript添加了一个编译过程。
 ## Typescript的使用
+FLow是工具，TypeScript是语言
+
+TypeScript主要为JavaScript提供了类型系统和ES6语法的支持！
+ 
+ ## 如何使用 
+
+ ### 安装
+ TypeScript命令行工具的安装（TS编译器）
+ ```
+ npm i typescript -g
+
+ ```
+ 安装好了之后，全局会提供一个`tsc`命令给我们使用！
+
+ ### 编写TypeScript代码
+
+ ### 通过tsc进行编译,最终运行
+
+ ### ts配置文件的说明
+ + 创建配置文件
+ ```
+tsc --init
+ ```
+ + 设置配置项
+  * target：指的就是将ts代码要转换成那个版本的js代码 es5 es3
+  * module：指的就是将ts代码转换成js代码之后，使用的模块化的标准是什么
+  * outDir: 指的就是将ts代码转换成js代码值，js代码存放的文件夹路径
+  * rootDir: 指的就是要将那个目录中的ts代码进行ts编译
+  * strict: 是否要将ts代码转换为严格模式的js代码
+
++ 使用配置文件
+```
+tsc -p ./tsconfig.json
+```
