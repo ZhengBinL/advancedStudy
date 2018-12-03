@@ -1,0 +1,23 @@
+.el-table .cell{
+  line-height: 20px;
+}
+.state-limit{
+  .el-button{
+    padding: 5px;
+    width: 70px;
+  }
+}
+.pad-adjust{
+  text-align: center;
+  .el-button{
+    padding: 5px;
+  }
+}
+.radio-box{
+  .el-radio__label{
+    display: none;
+  }
+}
+.el-tooltip__popper{
+  max-width: 200px!important;
+}
