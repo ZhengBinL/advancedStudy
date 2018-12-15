@@ -8,8 +8,11 @@
 </head>
 <body>
     <div id="app">
-        <p>{{msg}}</p>
+        <!-- <p>{{msg}}</p> -->
         <p v-text="msg"></p>
+        <p v-html="tag"></p>
+        <input type="text" v-model="msg">
+        <button v-on:click="handleClick">注册点击事件</button>
     </div>
     <script src="./src/compile.js"></script>
     <script src="./src/vue.js"></script>
@@ -17,8 +20,16 @@
     const vm = new Vue({
         el:"#app",
         data:{
-            msg:'hello word'
+            msg:'hello word',
+            tag:'<strong>view</strong>'
         },
+        methods:{
+            handleClick(){
+                // console.log("点击事件")
+                // console.log(this.msg)
+                console.log(this.$data.msg)
+            }
+        }
     })
     console.log(vm)
     </script>
