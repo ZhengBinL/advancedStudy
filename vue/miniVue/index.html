@@ -11,6 +11,7 @@
         <p>{{msg}}</p>
         <p v-text="msg"></p>
         <p v-html="tag"></p>
+        <!-- <p>{{color.black}}</p> -->
         <input type="text" v-model="msg">
         <button v-on:click="handleClick">注册点击事件</button>
     </div>
@@ -21,7 +22,11 @@
         el:"#app",
         data:{
             msg:'hello word',
-            tag:'<strong>view</strong>'
+            tag:'<strong>view</strong>'，
+            color:{
+                black:'黑',
+                white:'白'
+            }
         },
         methods:{
             handleClick(){
