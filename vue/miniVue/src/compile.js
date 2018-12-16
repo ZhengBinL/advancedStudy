@@ -66,25 +66,23 @@ class Compile {
             if (this.isDirective(attrName)) {
                 let type = attrName.slice(2)
                 let attrValue = attr.nodeValue
-                //如果是v-text指令
-                if (type === 'text') {
-                    node.textContent = this.vm.$data[attrValue]
-                }
-                //如果是v-html指令
-                if (type === 'html') {
-                    node.innerHTML = this.vm.$data[attrValue]
-                }
-                //如果是v-model指令
-                if (type === 'model') {
-                    node.value = this.vm.$data[attrValue]
-                }
+                // //如果是v-text指令
+                // if (type === 'text') {
+                //     node.textContent = this.vm.$data[attrValue]
+                // }
+                // //如果是v-html指令
+                // if (type === 'html') {
+                //     node.innerHTML = this.vm.$data[attrValue]
+                // }
+                // //如果是v-model指令
+                // if (type === 'model') {
+                //     node.value = this.vm.$data[attrValue]
+                // }
                 //如果是v-on指令
                 if (this.isEventDirective(type)) {
-                    console.log("解析v-on")
-                    let eventType = type.split(":")[1]
-                    // node.addEventListener(eventType,this.vm.$methods[attrValue])
-                    node.addEventListener(eventType,this.vm.$methods[attrValue].bind(this.vm))
-
+                    CompileUtil["eventHandler"](node,this.vm,type,attrValue)
+                } else {
+                    CompileUtil[type] && CompileUtil[type](node, this.vm, attrValue)
                 }
             }
         })
@@ -93,6 +91,12 @@ class Compile {
 
     //解析文本节点 
     compileText(node) {
+      let txt =  node.textContent
+      let reg = /\{\{(.+)\}\}/
+      if(reg.test(txt)){
+          let expr = RegExp.$1
+          node.textContent = txt.replace(reg,this.vm.$data[expr])
+      }
 
     }
 
@@ -114,5 +118,28 @@ class Compile {
     }
     isEventDirective(attrName) {
         return attrName.split(":")[0] === "on"
+    }
+}
+
+
+let CompileUtil = {
+    // 处理各种指令
+    text(node, vm, attrValue) {
+        node.textContent = vm.$data[attrValue]
+    },
+    html(node, vm, attrValue) {
+        node.innerHTML = vm.$data[attrValue]
+    },
+    model(node, vm, attrValue) {
+        node.value = vm.$data[attrValue]
+    },
+    eventHandler(node, vm, type, attrValue) {
+        console.log("解析v-on")
+        let eventType = type.split(":")[1]
+        // node.addEventListener(eventType,this.vm.$methods[attrValue])
+        let fn = vm.$methods && vm.$methods[attrValue]
+        if(eventType&&fn){
+            node.addEventListener(eventType, fn.bind(vm))
+        }
     }
 }
