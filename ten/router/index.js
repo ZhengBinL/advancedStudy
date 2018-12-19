@@ -5,8 +5,6 @@ const router = express.Router()
 
 router
     .get('/',indexCtrl.showIndex)
-    .get('/signin',indexCtrl.showLogin)
-    .get('/questions/new',indexCtrl.showQuestionNew)
-    .get('/questions/:id',indexCtrl.showLogin)
-    .get('/tags',indexCtrl.showTags)
+    .get('/login',indexCtrl.showLogin)
+    .post('/signup',indexCtrl.signup)
 module.exports = router

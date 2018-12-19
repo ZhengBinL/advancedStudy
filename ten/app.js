@@ -12,7 +12,9 @@ app.use('/node_modules/',express.static(path.join(__dirname,'./node_modules/')))
 // 接收解析客户端提交的 json 格式数据
 // appliction/json
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({
+    extended:true
+}))
 
 nunjucks.configure(path.join(__dirname,'./view'), {
     autoescape: true,

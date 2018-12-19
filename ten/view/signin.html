@@ -182,10 +182,18 @@
       // console.log($(this).serialize())
       $.ajax({
         url:'/signup',
-        method:'post',
+        method:'POST',
         data:$(this).serialize(),
-        success:function(){
+        success:function(data){
           console.log(data)
+          var code = data.code
+          if(code === 0){
+            window.alert('注册成功')
+          }else if(code === 1){
+            window.alert('用户名已存在')
+          }else if(code === 2){
+            window.alert('昵称已存在')
+          }
         }
       })
       return false
