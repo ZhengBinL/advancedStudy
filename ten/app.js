@@ -18,6 +18,11 @@ app.get('/', (req, res, next) => {
     res.render('index.html')
 })
 
+app.get('/people/home', (req, res, next) => {
+    // res.status(200).send('hello')
+    res.render('people-home.html')
+})
+
 app.listen(3000, () => {
     console.log("服务启动成功.")
     console.log('http://localhost:3000/')
