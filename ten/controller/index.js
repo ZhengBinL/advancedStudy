@@ -1,6 +1,7 @@
+// const User = require('../service/user')
 const axios = require('axios')
 
-const api = 'http://localhost:8000/api/v1/'
+
 
 
 
@@ -13,8 +14,8 @@ exports.showLogin = async (req, res, next) => {
 }
 
 exports.signup = async (req, res, next) => {
-    console.log('signup')
-
+    // console.log('signup') 
+    // http://localhost:8000/api/v1/
     //1. 获取表单数据
     // console.log(req.body)
     const {
@@ -27,48 +28,38 @@ exports.signup = async (req, res, next) => {
 
     //3. 业务处理
     //3.1 校验用户名是否被占用
-    const findUserNameRes = await axios({
-        url: api + 'users',
-        method: 'GET',
-        params: {
-            username
+    const findByNickname = await axios({
+        url:"http://localhost:8000/api/v1/users",
+        method:'GET',
+        params:{
+            nickname:nickname
         }
-    })
-    if (findUserNameRes.data[0]) {
-        return res.status(200).json({
-            code: 1,
-            message: '用户名已存在'
-        })
-    }
+    })       
+    console.log(findByNickname.data)
+    // if (await User.findByUsername(use rname)) {
+    //     return res.status(200).json({
+    //         code: 1,
+    //         message: '用户名已存在'
+    //     })
+    // }
     //3.2 校验昵称是否被占用
-    const findNickNameRes = await axios({
-        url: api + 'users',
-        method: 'GET',
-        params: { //GET 请求参数要写到params中
-            nickname
-        }
-    })
-    if (findNickNameRes.data[0]) {
-        return res.status(200).json({
-            code: 2,
-            message: '昵称已存在'
-        })
-    }
+    // if (await User.findByNickname(nickname)) {
+    //     return res.status(200).json({
+    //         code: 2,
+    //         message: '昵称已存在'
+    //     })
+    // }
     //3.3 创建用户
-    const createUserRes = await axios({
-        url: api + 'users',
-        method: 'POST',
-        data: { //POST 请求参数要写到data中
-            nickname,
-            password, //md5 处理
-            username
-        }
-    })
-    if (createUserRes.data.id) {
-        return res.status(200).json({
-            code: 0,
-            message: 'OK'
-        })
-    }
+    // const user = await User.create({
+    //     username,
+    //     password,
+    //     nickname
+    // })
+    // if (user.id) {
+    //     return res.status(200).json({
+    //         code: 0,
+    //         message: 'OK'
+    //     })
+    // }
     //4. 发送结果响应
 }

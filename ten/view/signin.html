@@ -174,8 +174,8 @@
       </div>
     </div>
   </div>
-  <script src="../node_modules/jquery/dist/jquery.js"></script>
-  <script>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script> 
     $('#signup_form').on('submit',window.handleSignup)
 
     function handleSignup(){
@@ -186,14 +186,14 @@
         data:$(this).serialize(),
         success:function(data){
           console.log(data)
-          var code = data.code
-          if(code === 0){
-            window.alert('注册成功')
-          }else if(code === 1){
-            window.alert('用户名已存在')
-          }else if(code === 2){
-            window.alert('昵称已存在')
-          }
+          // var code = data.code
+          // if(code === 0){
+          //   window.alert('注册成功')
+          // }else if(code === 1){
+          //   window.alert('用户名已存在')
+          // }else if(code === 2){
+          //   window.alert('昵称已存在')
+          // }
         }
       })
       return false
